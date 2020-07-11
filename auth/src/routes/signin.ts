@@ -25,12 +25,15 @@ router.post(
       throw new BadRequestError("Invalid credentials");
     }
 
-    const passwordsMatch = await Password.compare(
-      password,
-      existingUser.password
-    );
+    let passwordsMatch = false;
+    try {
+      passwordsMatch = await Password.compare(existingUser.password, password);
+    } catch (err) {
+      console.error(err);
+      throw new BadRequestError("");
+    }
 
-    if (!password) {
+    if (!passwordsMatch) {
       throw new BadRequestError("Invalid credentials");
     }
 
@@ -41,7 +44,6 @@ router.post(
       },
       process.env.JWT_KEY!
     );
-    console.log(userJwt);
 
     req.session = {
       jwt: userJwt,
