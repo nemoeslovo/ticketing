@@ -17,7 +17,6 @@ export default ({ currentUser }) => {
       );
     });
 
-  console.log("inside header", currentUser);
   return (
     <nav className="navbar navbar-light bg-light">
       <Link href="/">
