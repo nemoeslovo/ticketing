@@ -1,6 +1,5 @@
 import request from "supertest";
 import { app } from "../../app";
-import { User } from "../../models/user";
 
 it("fails when a email that does not exist is suplied", async () => {
   await request(app)
