@@ -1,6 +1,8 @@
 import express from "express";
 import { json } from "body-parser";
 import "express-async-errors";
+import { errorHandler, NotFoundError } from "@capitanyo/common";
+import cookieSession from "cookie-session";
 
 const app = express();
 app.set("trust proxy", true);
