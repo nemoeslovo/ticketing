@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 interface UserPayload {
-  id: StaticRange;
+  id: String;
   email: string;
 }
 
