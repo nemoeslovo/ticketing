@@ -5,6 +5,7 @@ import { errorHandler, NotFoundError, currentUser } from "@capitanyo/common";
 import cookieSession from "cookie-session";
 
 import { createTicketRouter } from "./routes/new";
+import { showRouter } from "./routes/show";
 
 const app = express();
 app.set("trust proxy", true);
@@ -18,6 +19,7 @@ app.use(
 
 app.use(currentUser);
 app.use(createTicketRouter);
+app.use(showRouter);
 
 app.all("*", async (req, res, next) => {
   throw new NotFoundError();
