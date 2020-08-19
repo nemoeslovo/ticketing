@@ -1,5 +1,6 @@
 import mangoose from "mongoose";
 import { app } from "./app";
+import { natsWrapper } from "./nats-wrapper";
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -11,6 +12,11 @@ const start = async () => {
   }
 
   try {
+    await natsWrapper.connect(
+      "ticketing",
+      "random_string123",
+      "http://nats-srv:4222"
+    );
     await mangoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
