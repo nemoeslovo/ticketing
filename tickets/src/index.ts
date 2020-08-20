@@ -17,6 +17,15 @@ const start = async () => {
       "random_string123",
       "http://nats-srv:4222"
     );
+
+    natsWrapper.client.on("close", () => {
+      console.log("NATS connection closed!");
+      process.exit();
+    });
+
+    process.on("SIGINT", () => natsWrapper.client.close());
+    process.on("SIGTERM", () => natsWrapper.client.close());
+
     await mangoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
