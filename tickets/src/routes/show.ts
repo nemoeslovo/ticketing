@@ -1,6 +1,6 @@
-import express, { Request, Response, Router } from "express";
+import express, { Request, Response } from "express";
 import { Ticket } from "../models/ticket";
-import { NotFoundError, NotAuthorizedError } from "@capitanyo/common";
+import { NotFoundError } from "@capitanyo/common";
 
 const router = express.Router();
 

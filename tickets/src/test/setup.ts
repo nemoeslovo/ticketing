@@ -10,6 +10,8 @@ declare global {
   }
 }
 
+jest.mock("../nats-wrapper");
+
 let mongo: any;
 beforeAll(async () => {
   process.env.JWT_KEY = "whatever";
@@ -26,6 +28,7 @@ beforeEach(async () => {
   for (let collection of collections) {
     await collection.deleteMany({});
   }
+  jest.clearAllMocks();
 });
 
 afterAll(async () => {
